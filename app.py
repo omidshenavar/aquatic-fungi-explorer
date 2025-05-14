@@ -581,9 +581,9 @@ with tabs[1]:
 
 
 
-# Footer - simplified since About is now in sidebar
+# Footer
 st.markdown(f"""
 <div class="footer">
-    <p>{APP_NAME} v{VERSION} | © {datetime.now().year} | MIT License</p>
+    <p>{APP_NAME} v{VERSION} | © {datetime.now().year} | <a href="https://github.com/omidshenavar/aquatic-fungi-explorer/blob/main/LICENSE" target="_blank">BSD 3-Clause License</a></p>
 </div>
 """, unsafe_allow_html=True)
