@@ -575,7 +575,7 @@ with tabs[1]:
 
     <p><strong>Database & Application:</strong></p>
     <div style="background-color: rgba(255,255,255,0.05); padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.9rem;">
-        Shenavar, O. (2025). <i>Aquatic Fungi Publication Explorer</i> [Data set and software]. Zenodo. DOI: TBA
+        Shenavar, O. (2025). <i>Aquatic Fungi Publication Explorer</i> [WebApp]. Zenodo. DOI: <a href='https://doi.org/10.5281/zenodo.15406080' target='_blank'>10.5281/zenodo.15406080</a>
     </div>
     """, unsafe_allow_html=True)
 
