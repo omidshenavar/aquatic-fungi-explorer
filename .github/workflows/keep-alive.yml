@@ -24,8 +24,6 @@ jobs:
             const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
             const page = await browser.newPage();
             await page.goto('https://aquatic-fungi-explorer.streamlit.app/', { timeout: 60000, waitUntil: 'networkidle2' });
-            const [btn] = await page.$x("//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'wake up')]");
-            if (btn) await btn.click();
             await browser.close();
           })();
           EOF
