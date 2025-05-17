@@ -1,43 +1,29 @@
-# .github/workflows/keep-alive.yml
 name: 🔄 Keep Streamlit App Alive
 
-# Every 15 minutes (GitHub free tier allows this)
 on:
   schedule:
     - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 jobs:
   wake_streamlit:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout your repo (not strictly needed, but a good pattern)
       - uses: actions/checkout@v3
-
-      # 2. Install Node.js (for Puppeteer)
       - name: Install Node.js
         run: |
           curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt-get install -y nodejs
-
-      # 3. Install Puppeteer
       - name: Install Puppeteer
         run: npm install puppeteer
-
-      # 4. Run a headless‑browser probe script
       - name: Wake up Streamlit app
         run: |
           node <<'EOF'
           const puppeteer = require('puppeteer');
           (async () => {
-            // launch without sandboxing on GitHub
             const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
             const page = await browser.newPage();
-            // navigate to your app
-            await page.goto('https://aquatic-fungi-explorer.streamlit.app/', {
-              timeout: 60000,
-              waitUntil: 'networkidle2'
-            });
-            // If there's a “Wake up” button, click it
+            await page.goto('https://aquatic-fungi-explorer.streamlit.app/', { timeout: 60000, waitUntil: 'networkidle2' });
             const [btn] = await page.$x("//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'wake up')]");
             if (btn) await btn.click();
             await browser.close();
